@@ -28,8 +28,8 @@ public class UserInfoService {
 	 */
 	public ResponseData<UserInfo> saveUser(UserInfo user) {
 		try {
-			// userDao.save(user);
-			return new ResponseData<UserInfo>(HttpStatus.OK, "User saved sucessfully", userDao.save(user));
+			UserInfo userInfo= userDao.save(user);
+			return new ResponseData<UserInfo>(HttpStatus.OK, "User saved sucessfully", userInfo);
 		} catch (Exception e) {
 			throw new BusinessException("A101", "unable to save user",
 					"USERSER001", "unable to save user", e);
@@ -54,5 +54,16 @@ public class UserInfoService {
 	}
 	}
 	
-	
+	public ResponseData<Optional<UserInfo>>editUser(UserInfo user)
+	{
+		try {
+		//userDao.
+		//return new ResponseData<>(HttpStatus.OK,"User fetched sucessfully",user);
+			return null;
+	}
+	catch (Exception e) {
+		throw new BusinessException("A101", "unable to fetch user",
+				"USERSER002", "unable to fetch user", e);
+	}
+	}
 }

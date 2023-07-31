@@ -41,4 +41,5 @@ public class UserInfo {
 	@Column(name = "created_on_utc")
 	private LocalDateTime createdOnUtc;
 	private int isSeller;
+	private String referCode;
 }
