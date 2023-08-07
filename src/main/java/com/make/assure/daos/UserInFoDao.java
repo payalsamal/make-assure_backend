@@ -19,4 +19,8 @@ public interface UserInFoDao extends CrudRepository<UserInfo, Integer>{
 //	void markEntryAsRead(@Param("entryId") Long rssFeedEntryId, @Param("isRead") boolean isRead);
 //    Seller fetchSellerByUserId(int userId);
 //	
+	@Query(value="SELECT * FROM user_info where mobile_number= :mobileNumber", nativeQuery=true)
+    UserInfo fetchSellerByUserMobileNumber(String mobileNumber);
+	
+	
 }

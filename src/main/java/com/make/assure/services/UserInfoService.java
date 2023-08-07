@@ -66,4 +66,18 @@ public class UserInfoService {
 				"USERSER002", "unable to fetch user", e);
 	}
 	}
+	public ResponseData<UserInfo>fetchUserByPhoneNumber(String mobileNumber )
+	{
+		try {
+			UserInfo user=userDao.fetchSellerByUserMobileNumber(mobileNumber);
+			return new ResponseData<>(HttpStatus.OK,"User fetched sucessfully",user);
+	}
+	catch (Exception e) {
+		throw new BusinessException("A101", "unable to fetch user",
+				"USERSER002", "unable to fetch user", e);
+	}
+	}
+	
+	
+	
 }

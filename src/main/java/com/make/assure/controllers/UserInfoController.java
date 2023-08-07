@@ -37,4 +37,11 @@ public class UserInfoController {
 		return new ResponseEntity<>(userService.fetchUserById(id),HttpStatus.OK);
 	}
 	
+	
+	
+	@GetMapping("/mobileno/{mobileNumber}")
+	public ResponseEntity<ResponseData<UserInfo>>fetchUserByPhoneNumbe(@PathVariable String mobileNumber)
+	{
+		return new ResponseEntity<>(userService.fetchUserByPhoneNumber(mobileNumber),HttpStatus.OK);
+	}
 }

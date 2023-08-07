@@ -28,18 +28,23 @@ public class UserInfo {
 	private String lastName;
 	@Column(name = "email_id")
 	private String emailId;
-	@Column(name = "mobile_number")
+	@Column(name = "mobile_number",  unique = true)
 	private String mobileNumber;
 	@Column(name = "gender")
 	private String gender;
 	@Column(name = "is_active")
 	private int isActive;
-	@Column(name = "dob")
-	private Date dob;
+//	@Column(name = "age")
+	private int age;
 	@Column(name = "deleted")
 	private int deleted;
 	@Column(name = "created_on_utc")
 	private LocalDateTime createdOnUtc;
 	private int isSeller;
+	//@Column(name = "created_on_utc")
 	private String referCode;
+	//@Column(name = "latitude",  precision=10, scale=3)
+	private Double latitude;
+	//@Column(name = "longitude",  precision=10, scale=3)
+	private Double longitude;
 }
