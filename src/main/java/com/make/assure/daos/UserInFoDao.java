@@ -14,9 +14,9 @@ public interface UserInFoDao extends CrudRepository<UserInfo, Integer>{
 
 //	@Modifying(clearAutomatically = true)
 //	@Query("UPDATE public.user_info\r\n"
-//			+ "SET first_name=:firstName, last_name=:lastName, email_id=:emailId, mobile_number=:mobileNumber, gender=:gender, is_seller=:isSeller, is_active=:isActive, deleted=:deleted, dob=:dob,\r\n"
+//			+ "SET first_name=:firstName, last_name=:lastName, email_id=:emailId, mobile_number=:mobileNumber, gender=:gender, is_seller=:isSeller, is_active=:isActive, deleted=:deleted, age=:age,\r\n"
 //			+ "WHERE user_id=nextval('user_info_user_id_seq'::regclass)")
-//	void markEntryAsRead(@Param("entryId") Long rssFeedEntryId, @Param("isRead") boolean isRead);
+//	
 //    Seller fetchSellerByUserId(int userId);
 //	
 	@Query(value="SELECT * FROM user_info where mobile_number= :mobileNumber", nativeQuery=true)
