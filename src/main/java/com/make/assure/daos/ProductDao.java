@@ -14,5 +14,8 @@ public interface ProductDao extends CrudRepository<Product, Integer>{
 	
 	@Query(value="select * from product p where p.seller_id= :sellerId", nativeQuery=true)
     List<Product> fetchProductBySellerId(long sellerId);
+	
+	@Query(value="select * from product p where p.product_id in (:productIds)", nativeQuery=true)
+    List<Product> fetchProductByProductIds(List<Integer> productIds);
 
 }

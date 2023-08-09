@@ -15,5 +15,5 @@ public class UserWishList {
 
 	@Id
 	private int userId;
-	private int product_id;
+	private int productId;
 }
