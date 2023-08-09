@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.make.assure.models.Product;
 import com.make.assure.models.ResponseData;
 import com.make.assure.models.UserInfo;
+import com.make.assure.models.UserWishlist;
 import com.make.assure.services.UserInfoService;
 
 @RestController
@@ -59,7 +60,11 @@ public class UserInfoController {
 		return new ResponseEntity<>(userService.removeProductFromLiked(userId, productId),HttpStatus.OK);
 	}
 	
-	
+	@PostMapping("/add/product")
+	public ResponseEntity<ResponseData<String>>saveProduct(@RequestBody UserWishlist userWishList)
+	{
+		return new ResponseEntity<>(userService.addToLikedProduct(userWishList),HttpStatus.OK);
+	}
 	
 	
 }

@@ -3,7 +3,6 @@ package com.make.assure.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ import com.make.assure.exceptions.BusinessException;
 import com.make.assure.models.Product;
 import com.make.assure.models.ResponseData;
 import com.make.assure.models.UserInfo;
-import com.make.assure.models.UserWishList;
+import com.make.assure.models.UserWishlist;
 
 @Service
 public class UserInfoService {
@@ -25,7 +24,7 @@ public class UserInfoService {
 	UserInFoDao userDao;
 
 	@Autowired
-	UserWishListDao userWishList;
+	UserWishListDao userWishListDao;
 
 	@Autowired
 	ProductDao productDao;
@@ -83,7 +82,7 @@ public class UserInfoService {
 	public ResponseData<List<Product>> getUserLikedProduct(int userId) {
 
 		try {
-			List<Integer> productIds = userWishList.fetchUserWishListById(userId);
+			List<Integer> productIds = userWishListDao.fetchUserWishListById(userId);
 
 			List<Product> products = productDao.fetchProductByProductIds(productIds);
 			return new ResponseData<>(HttpStatus.OK, "Product fetched sucessfully", products);
@@ -97,7 +96,7 @@ public class UserInfoService {
 
 		try {
 
-			userWishList.deleteProductFromWishList(userId, productId);
+			userWishListDao.deleteProductFromWishList(userId, productId);
 			return new ResponseData<>(HttpStatus.OK, "Removed from wishlist",null);
 		} catch (Exception e) {
 			throw new BusinessException("A101", "unable to product", "USERSER002", "unable to remove product", e);
@@ -105,4 +104,17 @@ public class UserInfoService {
 
 	}
 
+	@Transactional
+	public ResponseData<String> addToLikedProduct(UserWishlist userWishList) {
+
+		try {
+
+			userWishListDao.storeData(userWishList.getUserId(),userWishList.getProductId());
+			return new ResponseData<>(HttpStatus.OK, "Added to wishlist",null);
+		} catch (Exception e) {
+			throw new BusinessException("A101", "unable to product", "USERSER002", "unable to add product", e);
+		}
+
+	}
+	
 }

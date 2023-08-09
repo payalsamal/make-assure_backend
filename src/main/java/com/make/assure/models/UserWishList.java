@@ -11,7 +11,8 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @Data
-public class UserWishList {
+@NoArgsConstructor
+public class UserWishlist {
 
 	@Id
 	private int userId;
