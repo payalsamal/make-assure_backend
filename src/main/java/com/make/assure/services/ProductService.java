@@ -1,5 +1,7 @@
 package com.make.assure.services;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,5 +40,22 @@ public class ProductService {
 					"PRODSER001", "unable to save product", e);
 		
 		}
+	}
+	@Transactional
+	public ResponseData<List<Product>>getProductsBySellerId(int sellerId)
+	{
+
+		try {
+			
+			return new ResponseData<>(HttpStatus.OK, "product fetched sucessfully", productDao.getProductsBySellerId( sellerId));
+			
+		}
+		catch (Exception e) {
+
+			throw new BusinessException("A101", "unable fetch products",
+					"PRODSER001", "unable fetch products", e);
+		
+		}
+	
 	}
 }
